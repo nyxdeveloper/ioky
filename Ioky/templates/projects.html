@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Ioky: projects{% endblock %}
+{% block content %}
+
+    {% for project in projects %}
+        <div class="project-background" id="{{ project.slug }}" style="
+                    background-image: url({{ MEDIA_URL }}{{ project.image.url }});
+                    background-position: center;
+                    background-size: cover;
+                    ">
+            <div class="container" style="color: #7D7D7D;">
+                <h1 class="display-1">{{ project.title }}</h1>
+                <p style="font-size: 3vw" class="lead">{{ project.shortDescription }}</p>
+                <a href="{% url 'project-detail' project.slug %}"><button class="btn btn-outline-primary w-25 ml-auto mr-auto">Подробнее</button></a>
+            </div>
+        </div>
+    {% endfor %}
+
+
+{% endblock %}

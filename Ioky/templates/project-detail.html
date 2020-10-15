@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ project.title }}{% endblock %}
+{% block content %}
+    <div class="container description mt-3">
+        <img class="float-left mr-5 mb-5" height="400" width="auto" src="{{ MEDIA_URL }}{{ project.image.url }}" alt="">
+        <h1 class="display-3">{{ project.title }}</h1>
+        <p class="lead mb-5">
+            {{ project.description }}
+        </p>
+
+        <div class="table-responsive">
+            <h1>Модели</h1>
+        <table class="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>Модель</th>
+              <th>Выходное напряжение (Вольт)</th>
+              <th>Сила тока (Ампер)</th>
+              <th>Назначение</th>
+              <th>Размер (ш/д/в)</th>
+              <th>Срок работы (лет)</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% if project.projectModels.all %}
+              {% for model in project.projectModels.all %}
+                    <tr>
+                        <td>{{ model.name }}</td>
+                        <td>{{ model.V }}</td>
+                        <td>{{ model.I }}</td>
+                        <td>{{ model.appointment }}</td>
+                        <td>{{ model.size }}</td>
+                        <td>{{ model.term }}</td>
+                    </tr>
+              {% endfor %}
+          {% else %}
+              <span>Модели отсутствуют.</span>
+          {% endif %}
+          </tbody>
+        </table>
+
+{% endblock %}

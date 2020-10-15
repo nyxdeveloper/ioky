@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Ioky: about{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Проект Ioky</h1>
+                <p style="font-size: 30px" class="lead">
+                    это начинающий стартап по созданию доступных и долговечных источников питания
+                    на абсолютно все случаи жизни. Мы только начинаем своё развитие и стараемся
+                    сделать мир лучше с помощью новых технологий.
+                </p>
+            </div>
+        </div>
+
+
+        <div id="team" class="team">
+            <h1 style="font-size: 60px">Команда</h1>
+            {% for member in team %}
+                <div class="container d-flex text-center m-3">
+                    <div style="width: 50%" class="m-3">
+                        <img class="rounded-circle" height="300" src="{{ MEDIA_URL }}{{ member.photo.url }}" alt="">
+                    </div>
+                    <div style="width: 50%" class="member-info mt-auto mb-auto text-left">
+                        <h1>{{ member.firstName }} {{ member.lastName }}</h1>
+                        <h3>{{ member.position }}</h3>
+                        {% for num in member.phoneNumber.all %}
+                            <h3>{{ num.number }}</h3>
+                        {% endfor %}
+                        <h3>В компании с {{ member.yearOfAccesion }} года</h3>
+                        <hr>
+                        <h4>{{ member.about }}</h4>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">Задача команды Ioky</h1>
+                <p style="font-size: 30px" class="lead">
+                    создать как можно более долговечные источники питания для всех областей
+                    науки и техники, для того чтобы ускорить течение прогресса в разы.
+                </p>
+            </div>
+        </div>
+
+        <div class="container">
+            <h1 class="lead" style="font-size: 60px">Наши источники энергии необходимы</h1>
+            <ul style="font-size: 30px" class="p-5 lead">
+                <li>В робототехнике</li>
+                <li>В мехатронике</li>
+                <li>В машиностроении</li>
+                <li>В космонавтике</li>
+                <li>В добыче сырья</li>
+            </ul>
+        </div>
+
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4">На данный момент</h1>
+                <p style="font-size: 30px" class="lead">
+                    проект только стартует, но его перспективы почти безграничны. Мы ищем партнёров для его
+                    запуска и просим давать нам обратную связь. Для получения подробной информации советуем
+                    пройти в раздел <a href="{% url 'for-partners' %}">для инвесторов</a>
+                </p>
+            </div>
+        </div>
+
+        </div>
+
+{% endblock %}

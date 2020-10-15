@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container mt-3">
+        <h1>Информация для партнёров</h1>
+        <p style="font-size: 25px">
+            {{ info.mainInfo }}
+        </p>
+        <h1 class="mt-5">Документы</h1>
+        <ul>
+            {% for doc in docs %}
+                <li style="list-style: none; font-size: 30px">
+                    <img height="50px" src="{% static 'img/doc.png' %}" alt="doc">
+                    <a style="color: #212529" href="{{ MEDIA_URL }}{{ doc.file.url }}" download>{{ doc.name }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <h1 class="mt-5">Дополнительная информация</h1>
+        <p style="font-size: 25px">
+            {{ info.additionalInfo }}
+        </p>
+    </div>
+    <div class="container">
+        <form  style="font-size: 2vh" method="post" action="{% url 'add-partner' %}">
+            {% csrf_token %}
+            {% load crispy_forms_tags %}
+            <div class="col">
+                <div class="d-flex">
+                    <div class="container">{{ form.firstName.label }}{{ form.firstName }}</div>
+                    <div class="container">{{ form.lastName.label }}{{ form.lastName }}</div>
+                </div>
+                <div class="container">{{ form.companyName.label }}{{ form.companyName }}</div>
+                <div class="container">{{ form.Email.label }}{{ form.Email }}</div>
+                <div class="container">{{ form.message.label }}{{ form.message }}</div>
+            </div>
+
+            <div class="container p-5">
+                <button class="btn btn-lg btn-primary btn-block w-25 ml-auto mr-auto" type="submit">Отправить</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

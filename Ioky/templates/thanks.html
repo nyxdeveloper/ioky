@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load bootstrap4 %}
+    {% bootstrap_css %}
+    <meta charset="UTF-8">
+    <title>Thanks!</title>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-4">Спасибо за обратную связь!</h1>
+        <p class="lead">
+            Мы обязательно свяжемся с вами в ближайшее время, для уточнения всех нюансов и
+            дальнейшего сотрудничества.
+        </p>
+        <hr class="my-4">
+        <a class="btn btn-primary btn-lg" href="{% url 'home' %}" role="button">Вернуться на главную</a>
+    </div>
+</div>
+</body>
+</html>
